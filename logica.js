@@ -1,47 +1,42 @@
-// 1. Referencia al contenedor HTML
+// logica.js
+
 const contenedor = document.getElementById('contenedor');
 
-// 2. Función Asíncrona para pedir los usuarios
-async function obtenerUsuarios() {
+async function obtenerPerros() {
     try {
-        // Mi URL elegida
-        const respuesta = await fetch("https://randomuser.me/api/?results=20");
-
-        // Convertimos a JSON
+        // Tu URL elegida (pedimos 10 o 20 si quieres más)
+        const respuesta = await fetch("https://dog.ceo/api/breeds/image/random/10");
         const datos = await respuesta.json();
 
-        console.log("Datos recibidos:", datos.results);
+        // OJO: En esta API, la lista de fotos se llama "message", NO "results"
+        console.log(datos.message);
 
-        // Pasamos la lista a la función de pintar
-        dibujarUsuarios(datos.results);
+        dibujarPerros(datos.message);
 
     } catch (error) {
-        console.error("Error al cargar usuarios:", error);
-        contenedor.innerHTML = "<p style='color:red'>Error al cargar la API. Intenta recargar.</p>";
+        console.error("Error:", error);
     }
 }
 
-// 3. Función para generar el HTML
-function dibujarUsuarios(usuarios) {
-    usuarios.forEach(usuario => {
+function dibujarPerros(imagenes) {
+    // Como "imagenes" es solo una lista de textos (URLs), usamos el index para enumerar
+    imagenes.forEach((url, index) => {
+
+        // TRUCO PRO: Sacar la raza desde la URL
+        // La URL se ve así: https://images.dog.ceo/breeds/beagle/n020.jpg
+        // Al separar por barra (/), la raza siempre es la parte 4
+        const raza = url.split('/')[4];
 
         const tarjetaHTML = `
             <div class="tarjeta">
-                <img class="foto-perfil" src="${usuario.picture.large}" alt="Foto de perfil">
-
-                <h3 class="nombre">${usuario.name.first} ${usuario.name.last}</h3>
-
-                <p class="datos-extra">${usuario.email}</p>
-                <p class="datos-extra">${usuario.location.city}</p>
-
-                <span class="pais">${usuario.location.country}</span>
+                <img class="foto" src="${url}" alt="Perro">
+                <h3 class="raza">🐕 ${raza}</h3>
+                <p>Candidato #${index + 1}</p>
             </div>
         `;
 
-        // Inyectamos la tarjeta en el contenedor
         contenedor.innerHTML += tarjetaHTML;
     });
 }
 
-// 4. Ejecutar al inicio
-obtenerUsuarios();
+obtenerPerros();
