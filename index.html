@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Directorio de Usuarios - SPA</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f2f5;
+            color: #333;
+            text-align: center;
+            margin: 0;
+        }
+
+        h1 { margin-top: 30px; color: #1c1e21; }
+        p { color: #606770; margin-bottom: 30px; }
+
+        /* Contenedor Flex (La magia del diseño) */
+        #contenedor {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Tarjeta de Usuario */
+        .tarjeta {
+            background: white;
+            border-radius: 10px;
+            width: 300px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1); /* Sombra suave */
+            transition: transform 0.2s, box-shadow 0.2s;
+            display: flex; /* Para alinear foto y texto verticalmente */
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Efecto al pasar el mouse */
+        .tarjeta:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.15);
+        }
+
+        /* Foto Redonda */
+        .foto-perfil {
+            border-radius: 50%;
+            width: 128px;
+            height: 128px;
+            border: 5px solid #e4e6eb;
+            margin-bottom: 15px;
+        }
+
+        .nombre { margin: 5px 0; font-size: 1.4rem; color: #1c1e21; text-transform: capitalize; }
+
+        .datos-extra {
+            font-size: 0.9rem;
+            color: #65676b;
+            margin: 5px 0;
+            width: 100%;
+            word-wrap: break-word; /* Evita que correos largos rompan la tarjeta */
+        }
+
+        .pais {
+            margin-top: 10px;
+            background-color: #e7f3ff;
+            color: #1877f2;
+            padding: 5px 15px;
+            border-radius: 15px;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>👥 Usuarios Aleatorios</h1>
+    <p>Consumiendo API: randomuser.me/api/?results=20</p>
+
+    <div id="contenedor"></div>
+
+    <script src="logica.js"></script>
+
+</body>
+</html>
