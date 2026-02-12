@@ -68,7 +68,7 @@ p {
 }
 
 .raza {
-    text-transform: capitalize; /* Pone la primera letra en Mayúscula */
+    text-transform: capitalize; /* Pone la primera letra en mayúscula */
     color: #444;
     font-size: 1.2rem;
     margin: 15px 0 5px 0;
